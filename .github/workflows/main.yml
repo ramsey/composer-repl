@@ -53,7 +53,7 @@ jobs:
             - name: Analyze & test
               run: |
                   composer br:lint
-                  composer br:analyze
+                  composer br:analyze:ci
                   composer br:test:coverage:ci -- --coverage-text
 
             - name: Publish code coverage

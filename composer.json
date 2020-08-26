@@ -64,8 +64,13 @@
             "@br:analyze:phpstan",
             "@br:analyze:psalm"
         ],
+        "br:analyze:ci": [
+            "@br:analyze:phpstan",
+            "@br:analyze:psalm:ci"
+        ],
         "br:analyze:phpstan": "phpstan analyse --memory-limit=1G",
         "br:analyze:psalm": "psalm --diff --diff-methods --show-info=true --config=psalm.xml",
+        "br:analyze:psalm:ci": "psalm --shepherd --diff --diff-methods --show-info=true --config=psalm.xml",
         "br:build:clean": "git clean -fX build/.",
         "br:build:clear-cache": "git clean -fX build/cache/.",
         "br:lint": "phpcs --cache=build/cache/phpcs.cache",
