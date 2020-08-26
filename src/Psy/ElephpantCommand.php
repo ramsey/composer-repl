@@ -26,8 +26,7 @@ use Psy\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
-class 🐘Command extends Command
+class ElephpantCommand extends Command
 {
     protected function configure(): void
     {

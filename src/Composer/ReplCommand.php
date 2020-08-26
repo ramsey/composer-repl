@@ -29,9 +29,9 @@ use PHPUnit\Framework\TestCase;
 use Psy\Configuration;
 use Psy\Shell;
 use Ramsey\Dev\Repl\Process\ProcessFactory;
+use Ramsey\Dev\Repl\Psy\ElephpantCommand;
 use Ramsey\Dev\Repl\Psy\PhpunitRunCommand;
 use Ramsey\Dev\Repl\Psy\PhpunitTestCommand;
-use Ramsey\Dev\Repl\Psy\🐘Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -109,7 +109,7 @@ class ReplCommand extends BaseCommand
             $this->processFactory,
             $composer,
         ));
-        $shell->add(new 🐘Command());
+        $shell->add(new ElephpantCommand());
 
         return $shell->run();
     }
