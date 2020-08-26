@@ -11,6 +11,7 @@
     <br>
     <a href="https://github.com/ramsey/composer-repl/actions?query=workflow%3Amain"><img src="https://img.shields.io/github/workflow/status/ramsey/composer-repl/main?logo=github&style=flat-square" alt="Build Status"></a>
     <a href="https://codeclimate.com/github/ramsey/composer-repl"><img src="https://img.shields.io/codeclimate/coverage/ramsey/composer-repl?logo=Code%20Climate&style=flat-square" alt="Code Coverage"></a>
+    <a href="https://shepherd.dev/github/ramsey/composer-repl"><img src="https://img.shields.io/endpoint?style=flat-square&url=https%3A%2F%2Fshepherd.dev%2Fgithub%2Framsey%2Fcomposer-repl%2Fcoverage" alt="Psalm Type Coverage"></a>
     <a href="https://codeclimate.com/github/ramsey/composer-repl"><img src="https://img.shields.io/codeclimate/coverage-letter/ramsey/composer-repl?label=maintainability&logo=Code%20Climate&style=flat-square" alt="Maintainability"></a>
     <br>
     <a href="https://github.com/ramsey/composer-repl/blob/master/LICENSE"><img src="https://img.shields.io/packagist/l/ramsey/composer-repl.svg?style=flat-square&colorB=darkcyan" alt="Read License"></a>
