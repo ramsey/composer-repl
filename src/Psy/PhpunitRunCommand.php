@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace Ramsey\Dev\Repl\Psy;
 
+use Composer\Composer;
 use Ramsey\Dev\Repl\Process\ProcessFactory;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -40,13 +41,18 @@ class PhpunitRunCommand extends ContextAwareCommand
 {
     private string $repositoryRoot;
     private ProcessFactory $processFactory;
+    private Composer $composer;
 
-    public function __construct(string $repositoryRoot, ProcessFactory $processFactory)
-    {
+    public function __construct(
+        string $repositoryRoot,
+        ProcessFactory $processFactory,
+        Composer $composer
+    ) {
         parent::__construct(null);
 
         $this->repositoryRoot = $repositoryRoot;
         $this->processFactory = $processFactory;
+        $this->composer = $composer;
     }
 
     protected function configure(): void
@@ -132,13 +138,8 @@ class PhpunitRunCommand extends ContextAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $phpunit = $this->repositoryRoot
-            . DIRECTORY_SEPARATOR
-            . 'vendor'
-            . DIRECTORY_SEPARATOR
-            . 'bin'
-            . DIRECTORY_SEPARATOR
-            . 'phpunit';
+        $binDir = (string) $this->composer->getConfig()->get('bin-dir');
+        $phpunit = $binDir . DIRECTORY_SEPARATOR . 'phpunit';
 
         $process = $this->processFactory->factory(
             array_merge([$phpunit, '--colors=always'], $this->buildArguments($input)),

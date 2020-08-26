@@ -25,11 +25,19 @@ namespace Ramsey\Dev\Repl\Composer;
 use Composer\Command\BaseCommand;
 use Composer\Composer;
 use Composer\Factory;
+use Composer\IO\ConsoleIO;
 use Composer\IO\IOInterface;
 use Composer\Plugin\Capability\CommandProvider;
 use Composer\Plugin\Capable;
 use Composer\Plugin\PluginInterface;
 use Ramsey\Dev\Repl\Process\ProcessFactory;
+use Symfony\Component\Console\Helper\DescriptorHelper;
+use Symfony\Component\Console\Helper\FormatterHelper;
+use Symfony\Component\Console\Helper\HelperSet;
+use Symfony\Component\Console\Helper\ProcessHelper;
+use Symfony\Component\Console\Helper\SymfonyQuestionHelper;
+use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 use function realpath;
 
@@ -40,6 +48,7 @@ class ReplPlugin implements Capable, CommandProvider, PluginInterface
 {
     private ProcessFactory $processFactory;
     private string $repoRoot;
+    private Composer $composer;
 
     /**
      * @var mixed[]
@@ -55,13 +64,18 @@ class ReplPlugin implements Capable, CommandProvider, PluginInterface
      *
      * @param mixed[] $args
      */
-    public function __construct(array $args = [], ?ProcessFactory $processFactory = null)
-    {
+    public function __construct(
+        array $args = [],
+        ?Composer $composer = null,
+        ?IOInterface $io = null,
+        ?ProcessFactory $processFactory = null
+    ) {
         $composerFile = (string) Factory::getComposerFile();
 
         $this->capabilityArgs = $args;
         $this->repoRoot = (string) realpath(dirname($composerFile));
         $this->processFactory = $processFactory ?? new ProcessFactory();
+        $this->composer = $composer ?? Factory::create($io ?? $this->buildIO(), $composerFile);
     }
 
     /**
@@ -94,5 +108,20 @@ class ReplPlugin implements Capable, CommandProvider, PluginInterface
 
     public function uninstall(Composer $composer, IOInterface $io): void
     {
+    }
+
+    private function buildIO(): ConsoleIO
+    {
+        $input = new StringInput('');
+        $output = new ConsoleOutput();
+
+        $helperSet = new HelperSet([
+            new DescriptorHelper(),
+            new FormatterHelper(),
+            new ProcessHelper(),
+            new SymfonyQuestionHelper(),
+        ]);
+
+        return new ConsoleIO($input, $output, $helperSet);
     }
 }

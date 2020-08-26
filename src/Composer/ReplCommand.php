@@ -98,10 +98,17 @@ class ReplCommand extends BaseCommand
             $config->setInteractiveMode(Configuration::INTERACTIVE_MODE_DISABLED);
         }
 
+        /** @var Composer $composer */
+        $composer = $this->getComposer(true);
+
         $shell = new Shell($config);
         $shell->setScopeVariables($this->getScopeVariables());
         $shell->add(new PhpunitTestCommand());
-        $shell->add(new PhpunitRunCommand($this->repositoryRoot, $this->processFactory));
+        $shell->add(new PhpunitRunCommand(
+            $this->repositoryRoot,
+            $this->processFactory,
+            $composer,
+        ));
         $shell->add(new 🐘Command());
 
         return $shell->run();

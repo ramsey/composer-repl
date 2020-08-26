@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Ramsey\Test\Dev\Repl\Psy;
 
+use Composer\Composer;
+use Composer\Config;
 use Mockery\MockInterface;
 use Psy\Context;
 use Psy\Shell;
@@ -20,6 +22,22 @@ use const DIRECTORY_SEPARATOR;
 
 class PhpunitRunCommandTest extends RamseyTestCase
 {
+    /**
+     * @var Composer & MockInterface $composer
+     */
+    private Composer $composer;
+
+    public function setUp(): void
+    {
+        /** @var Config & MockInterface $config */
+        $config = $this->mockery(Config::class);
+        $config->allows()->get('bin-dir')->andReturn('/path/to/vendor/bin');
+
+        $this->composer = $this->mockery(Composer::class, [
+            'getConfig' => $config,
+        ]);
+    }
+
     public function testGetApplication(): void
     {
         /** @var ProcessFactory & MockInterface $processFactory */
@@ -30,7 +48,7 @@ class PhpunitRunCommandTest extends RamseyTestCase
             'getHelperSet' => $this->mockery(HelperSet::class),
         ]);
 
-        $command = new PhpunitRunCommand('/path/to/repo', $processFactory);
+        $command = new PhpunitRunCommand('/path/to/repo', $processFactory, $this->composer);
         $command->setApplication($application);
 
         $this->assertSame($application, $command->getApplication());
@@ -41,7 +59,7 @@ class PhpunitRunCommandTest extends RamseyTestCase
         /** @var ProcessFactory & MockInterface $processFactory */
         $processFactory = $this->mockery(ProcessFactory::class);
 
-        $command = new PhpunitRunCommand('/path/to/repo', $processFactory);
+        $command = new PhpunitRunCommand('/path/to/repo', $processFactory, $this->composer);
 
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Application is not set');
@@ -57,7 +75,7 @@ class PhpunitRunCommandTest extends RamseyTestCase
         /** @var Context & MockInterface $context */
         $context = $this->mockery(Context::class);
 
-        $command = new PhpunitRunCommand('/path/to/repo', $processFactory);
+        $command = new PhpunitRunCommand('/path/to/repo', $processFactory, $this->composer);
         $command->setContext($context);
 
         $this->assertSame($context, $command->getContext());
@@ -68,7 +86,7 @@ class PhpunitRunCommandTest extends RamseyTestCase
         /** @var ProcessFactory & MockInterface $processFactory */
         $processFactory = $this->mockery(ProcessFactory::class);
 
-        $command = new PhpunitRunCommand('/path/to/repo', $processFactory);
+        $command = new PhpunitRunCommand('/path/to/repo', $processFactory, $this->composer);
 
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Context is not set');
@@ -111,7 +129,7 @@ class PhpunitRunCommandTest extends RamseyTestCase
             ->factory($expectedParams, '/path/to/repo')
             ->andReturn($process);
 
-        $command = new PhpunitRunCommand('/path/to/repo', $processFactory);
+        $command = new PhpunitRunCommand('/path/to/repo', $processFactory, $this->composer);
 
         $this->assertSame($expectedExitCode, $command->run($input, $output));
     }
@@ -121,13 +139,7 @@ class PhpunitRunCommandTest extends RamseyTestCase
      */
     public function provideCommandInput(): array
     {
-        $phpunit = '/path/to/repo'
-            . DIRECTORY_SEPARATOR
-            . 'vendor'
-            . DIRECTORY_SEPARATOR
-            . 'bin'
-            . DIRECTORY_SEPARATOR
-            . 'phpunit';
+        $phpunit = '/path/to/vendor/bin' . DIRECTORY_SEPARATOR . 'phpunit';
 
         return [
             [
