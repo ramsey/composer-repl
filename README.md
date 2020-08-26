@@ -4,13 +4,8 @@
     <strong>A REPL for PHP built into Composer.</strong>
 </p>
 
-<!--
-TODO: Make sure the following URLs are correct and working for your project.
-      Then, remove these comments to display the badges, giving users a quick
-      overview of your package.
-
 <p align="center">
-    <a href="https://github.com/ramsey/composer-repl"><img src="http://img.shields.io/badge/source-ramsey/composer-repl-blue.svg?style=flat-square" alt="Source Code"></a>
+    <a href="https://github.com/ramsey/composer-repl"><img src="http://img.shields.io/badge/source-ramsey/composer--repl-blue.svg?style=flat-square" alt="Source Code"></a>
     <a href="https://packagist.org/packages/ramsey/composer-repl"><img src="https://img.shields.io/packagist/v/ramsey/composer-repl.svg?style=flat-square&label=release" alt="Download Package"></a>
     <a href="https://php.net"><img src="https://img.shields.io/packagist/php-v/ramsey/composer-repl.svg?style=flat-square&colorB=%238892BF" alt="PHP Programming Language"></a>
     <br>
@@ -22,46 +17,104 @@ TODO: Make sure the following URLs are correct and working for your project.
     <a href="https://packagist.org/packages/ramsey/composer-repl/stats"><img src="https://img.shields.io/packagist/dt/ramsey/composer-repl.svg?style=flat-square&colorB=darkmagenta" alt="Package downloads on Packagist"></a>
     <a href="https://phpc.chat/channel/ramsey"><img src="https://img.shields.io/badge/phpc.chat-%23ramsey-darkslateblue?style=flat-square" alt="Chat with the maintainers"></a>
 </p>
--->
-
 
 ## About
 
-<!--
-TODO: Use this space to provide more details about your package. Try to be
-      concise. This is the introduction to your package. Let others know what
-      your package does and how it can help them build applications.
--->
+This [Composer](https://getcomposer.org) plugin provides the `composer repl`
+command.
 
+REPL stands for *read-eval-print loop*. It's a language shell that reads user
+input, evaluates the input using a programming language (in this case, PHP), and
+prints the output to the screen. Then, it returns to the read state (that's the
+*loop* part).
+
+[PsySH](https://psysh.org) is the REPL providing the magic behind
+ramsey/composer-repl. PsySH is a language shell for PHP. It's similar to
+[irb](https://github.com/ruby/irb) for Ruby, [IPython](https://ipython.org) for
+Python, and [JShell](https://docs.oracle.com/javase/9/tools/jshell.htm) for
+Java. In addition to acting as a language shell, PsySH can also function as an
+interactive debugger and development console.
+[Laravel Tinker](https://github.com/laravel/tinker), [Drush](https://www.drush.org)
+for Drupal, [WP-CLI shell](https://github.com/wp-cli/shell-command)
+for WordPress, [CakePHP console](https://book.cakephp.org/3/en/console-and-shells/repl.html),
+and [Yii shell](https://github.com/yiisoft/yii2-shell) are a few of the projects
+using PsySH.
 
 This project adheres to a [code of conduct](CODE_OF_CONDUCT.md).
 By participating in this project and its community, you are expected to
 uphold this code.
 
-
 ## Installation
 
-Install this package as a dependency using [Composer](https://getcomposer.org).
+Install this package as a development dependency using
+[Composer](https://getcomposer.org).
 
 ``` bash
-composer require ramsey/composer-repl
+composer require --dev ramsey/composer-repl
 ```
 
-<!--
 ## Usage
 
-Provide a brief description or short example of how to use this library.
-If you need to provide more detailed examples, use the `docs/` directory
-and provide a link here to the documentation.
+Open your terminal and type `composer repl`. You may also type `composer shell`,
+if you prefer.
+
+You'll see something similar to this:
+
+```
+Psy Shell v0.10.4 (PHP 7.4.9 — cli) by Justin Hileman
+------------------------------------------------------------------------
+Welcome to the development console (REPL) for ramsey/conventional-commits.
+To learn more about what you can do in PsySH, type `help`.
+------------------------------------------------------------------------
+>>>
+```
+
+While in the dev console, you can do cool things like this:
 
 ``` php
-use Ramsey\Composer\Repl\Example;
+>>> $hello = 'Hello, world'
+=> "Hello, world"
 
-$example = new Example();
-echo $example->greet('fellow human');
+>>> echo $hello
+Hello, world
+
+>>> foreach ([1, 2, 3] as $x) echo $x . "\n"
+1
+2
+3
+
+>>> $date = new DateTimeImmutable();
+=> DateTimeImmutable @1598393282 {#6953
+     date: 2020-08-25 22:08:02.643076 UTC (+00:00),
+   }
+
+>>> $getDate = fn (DateTimeInterface $dt): DateTimeInterface => $dt;
+=> Closure(DateTimeInterface $dt): DateTimeInterface {#6964 …3}
+
+>>> t assertInstanceOf(DateTimeInterface::class, $date);
+Test passed!
+
+>>> t assertSame($date, $getDate($date))
+Test passed!
+
+>>> phpunit
+
+PHPUnit 9.3.7 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 7.4.9
+Configuration: /path/to/ramsey/conventional-commits/phpunit.xml.dist
+
+...............................................................  63 / 221 ( 28%)
+............................................................... 126 / 221 ( 57%)
+............................................................... 189 / 221 ( 85%)
+................................                                221 / 221 (100%)
+
+Time: 00:00.064, Memory: 12.00 MB
+
+OK (221 tests, 484 assertions)
 ```
--->
 
+This implementation of PsySH has Super ElePHPant Powers.
 
 ## Contributing
 
@@ -127,7 +180,7 @@ This project follows a superset of [PSR-12](https://www.php-fig.org/psr/psr-12/)
 coding standards, enforced by [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer).
 The project PHP_CodeSniffer configuration may be found in `phpcs.xml.dist`.
 
-lint-staged will run PHP_CodeSniffer before committing. It will attempt to fix
+CaptainHook will run PHP_CodeSniffer before committing. It will attempt to fix
 any errors it can, and it will reject the commit if there are any un-fixable
 issues. Many issues can be fixed automatically and will be done so pre-commit.
 
@@ -149,7 +202,7 @@ and [Psalm](https://github.com/vimeo/psalm) to provide static analysis of PHP
 code. Configurations for these are in `phpstan.neon.dist` and `psalm.xml`,
 respectively.
 
-lint-staged will run PHPStan and Psalm before committing. The pre-commit hook
+CaptainHook will run PHPStan and Psalm before committing. The pre-commit hook
 does not attempt to fix any static analysis errors. Instead, the commit will
 fail, and you must fix the errors manually.
 
@@ -161,28 +214,13 @@ following command:
 composer br:analyze
 ```
 
-### Project Structure
+#### Project Structure
 
 This project uses [pds/skeleton](https://github.com/php-pds/skeleton) as its
 base folder structure and layout.
-
-| Name              | Description                                    |
-| ------------------| ---------------------------------------------- |
-| **bin/**          | Commands and scripts for this project          |
-| **build/**        | Cache, logs, reports, etc. for project builds  |
-| **docs/**         | Project-specific documentation                 |
-| **resources/**    | Additional resources for this project          |
-| **src/**          | Project library and application source code    |
-| **tests/**        | Tests for this project                         |
-
-
-
-
 
 ## Copyright and License
 
 The ramsey/composer-repl library is copyright © [Ben Ramsey](https://benramsey.com)
 and licensed for use under the terms of the
 MIT License (MIT). Please see [LICENSE](LICENSE) for more information.
-
-

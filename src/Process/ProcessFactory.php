@@ -20,18 +20,20 @@
 
 declare(strict_types=1);
 
-namespace Ramsey\Composer\Repl;
+namespace Ramsey\Dev\Repl\Process;
+
+use Symfony\Component\Process\Process;
 
 /**
- * An example class to act as a starting point for developing your library
+ * Factory to create a Symfony Process instance for running commands
  */
-class Example
+class ProcessFactory
 {
     /**
-     * Returns a greeting statement using the provided name
+     * @param string[] $command
      */
-    public function greet(string $name = 'World'): string
+    public function factory(array $command, ?string $cwd = null): Process
     {
-        return "Hello, {$name}!";
+        return new Process($command, $cwd);
     }
 }

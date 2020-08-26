@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ramsey\Test\Composer\Repl;
+namespace Ramsey\Test\Dev\Repl;
 
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
