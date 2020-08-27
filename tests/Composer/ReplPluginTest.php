@@ -29,7 +29,14 @@ class ReplPluginTest extends RamseyTestCase
 
     public function testGetCommands(): void
     {
+        /** @var Composer & MockInterface $composer */
+        $composer = Mockery::mock(Composer::class);
+
+        /** @var IOInterface & MockInterface $io */
+        $io = Mockery::spy(IOInterface::class);
+
         $plugin = new ReplPlugin();
+        $plugin->activate($composer, $io);
 
         $commands = $plugin->getCommands();
 

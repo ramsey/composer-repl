@@ -45,33 +45,20 @@ class ReplCommand extends BaseCommand
 {
     private string $repositoryRoot;
     private ProcessFactory $processFactory;
-    private ?Composer $composer;
     private bool $isInteractive;
 
     public function __construct(
         string $repositoryRoot,
         ProcessFactory $processFactory,
-        ?Composer $composer = null,
+        Composer $composer,
         bool $isInteractive = true
     ) {
         parent::__construct(null);
 
         $this->repositoryRoot = $repositoryRoot;
         $this->processFactory = $processFactory;
-        $this->composer = $composer;
+        $this->setComposer($composer);
         $this->isInteractive = $isInteractive;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getComposer($required = true, $disablePlugins = null)
-    {
-        if ($this->composer !== null) {
-            return $this->composer;
-        }
-
-        return parent::getComposer($required, $disablePlugins); // @codeCoverageIgnore
     }
 
     protected function configure(): void

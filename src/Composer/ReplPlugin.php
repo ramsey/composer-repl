@@ -38,6 +38,8 @@ use function realpath;
  */
 class ReplPlugin implements Capable, CommandProvider, PluginInterface
 {
+    private static Composer $composer;
+
     private ProcessFactory $processFactory;
     private string $repoRoot;
 
@@ -65,12 +67,13 @@ class ReplPlugin implements Capable, CommandProvider, PluginInterface
     public function getCommands(): array
     {
         return [
-            new ReplCommand($this->repoRoot, $this->processFactory),
+            new ReplCommand($this->repoRoot, $this->processFactory, self::$composer),
         ];
     }
 
     public function activate(Composer $composer, IOInterface $io): void
     {
+        self::$composer = $composer;
     }
 
     public function deactivate(Composer $composer, IOInterface $io): void
