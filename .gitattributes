@@ -1,4 +1,5 @@
 .codeclimate.yml      export-ignore
+.codecov.yml          export-ignore
 .editorconfig         export-ignore
 .gitattributes        export-ignore
 .github/              export-ignore
