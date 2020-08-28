@@ -22,15 +22,19 @@ declare(strict_types=1);
 
 namespace Ramsey\Dev\Repl\Process;
 
-use Symfony\Component\Process\Process;
+use ReflectionException;
 
 /**
- * Factory to create a Symfony Process instance for running commands
+ * Factory to create a Process instance for running commands
+ *
+ * @internal
  */
 class ProcessFactory
 {
     /**
      * @param string[] $command
+     *
+     * @throws ReflectionException
      */
     public function factory(array $command, ?string $cwd = null): Process
     {

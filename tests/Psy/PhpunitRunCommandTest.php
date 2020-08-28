@@ -9,6 +9,7 @@ use Composer\Config;
 use Mockery\MockInterface;
 use Psy\Context;
 use Psy\Shell;
+use Ramsey\Dev\Repl\Process\Process;
 use Ramsey\Dev\Repl\Process\ProcessFactory;
 use Ramsey\Dev\Repl\Psy\PhpunitRunCommand;
 use Ramsey\Test\Dev\Repl\RamseyTestCase;
@@ -16,7 +17,6 @@ use RuntimeException;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Process;
 
 use const DIRECTORY_SEPARATOR;
 
