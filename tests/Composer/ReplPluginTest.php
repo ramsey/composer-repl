@@ -11,9 +11,9 @@ use Mockery;
 use Mockery\MockInterface;
 use Ramsey\Dev\Repl\Composer\ReplCommand;
 use Ramsey\Dev\Repl\Composer\ReplPlugin;
-use Ramsey\Test\Dev\Repl\RamseyTestCase;
+use Ramsey\Dev\Tools\TestCase;
 
-class ReplPluginTest extends RamseyTestCase
+class ReplPluginTest extends TestCase
 {
     public function testGetCapabilities(): void
     {

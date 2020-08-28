@@ -11,13 +11,13 @@ use Composer\Package\RootPackageInterface;
 use Mockery\MockInterface;
 use Ramsey\Dev\Repl\Composer\ReplCommand;
 use Ramsey\Dev\Repl\Process\ProcessFactory;
-use Ramsey\Test\Dev\Repl\RamseyTestCase;
+use Ramsey\Dev\Tools\TestCase;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use function realpath;
 
-class ReplCommandTest extends RamseyTestCase
+class ReplCommandTest extends TestCase
 {
     public function testRun(): void
     {

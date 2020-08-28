@@ -7,18 +7,18 @@ namespace Ramsey\Test\Dev\Repl\Psy;
 use Exception;
 use InvalidArgumentException;
 use Mockery\MockInterface;
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use Psy\Context;
 use Psy\Input\ShellInput;
 use Psy\Shell;
 use Ramsey\Dev\Repl\Psy\PhpunitTestCommand;
-use Ramsey\Test\Dev\Repl\RamseyTestCase;
+use Ramsey\Dev\Tools\TestCase;
 use RuntimeException;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class PhpunitTestCommandTest extends RamseyTestCase
+class PhpunitTestCommandTest extends TestCase
 {
     private Context $context;
 
@@ -26,7 +26,7 @@ class PhpunitTestCommandTest extends RamseyTestCase
     {
         /** @var Context & MockInterface $context */
         $context = $this->mockery(Context::class);
-        $context->allows()->get('phpunit')->andReturn(new class extends TestCase {
+        $context->allows()->get('phpunit')->andReturn(new class extends PHPUnitTestCase {
         });
 
         $this->context = $context;

@@ -6,11 +6,11 @@ namespace Ramsey\Test\Dev\Repl\Psy;
 
 use Mockery\MockInterface;
 use Ramsey\Dev\Repl\Psy\ElephpantCommand;
-use Ramsey\Test\Dev\Repl\RamseyTestCase;
+use Ramsey\Dev\Tools\TestCase;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ElephpantCommandTest extends RamseyTestCase
+class ElephpantCommandTest extends TestCase
 {
     public function testRun(): void
     {

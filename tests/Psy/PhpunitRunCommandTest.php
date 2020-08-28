@@ -12,7 +12,7 @@ use Psy\Shell;
 use Ramsey\Dev\Repl\Process\Process;
 use Ramsey\Dev\Repl\Process\ProcessFactory;
 use Ramsey\Dev\Repl\Psy\PhpunitRunCommand;
-use Ramsey\Test\Dev\Repl\RamseyTestCase;
+use Ramsey\Dev\Tools\TestCase;
 use RuntimeException;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\StringInput;
@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use const DIRECTORY_SEPARATOR;
 
-class PhpunitRunCommandTest extends RamseyTestCase
+class PhpunitRunCommandTest extends TestCase
 {
     /**
      * @var Composer & MockInterface $composer

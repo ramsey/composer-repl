@@ -6,9 +6,9 @@ namespace Ramsey\Test\Dev\Repl\Process;
 
 use Ramsey\Dev\Repl\Process\Process;
 use Ramsey\Dev\Repl\Process\ProcessFactory;
-use Ramsey\Test\Dev\Repl\RamseyTestCase;
+use Ramsey\Dev\Tools\TestCase;
 
-class ProcessFactoryTest extends RamseyTestCase
+class ProcessFactoryTest extends TestCase
 {
     public function testFactory(): void
     {
