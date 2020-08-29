@@ -21,6 +21,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Security
 
 
+## [1.1.0] - 2020-08-28
+
+### Added
+
+* add a standalone `repl` command to the bin directory
+
+### Fixed
+
+* use internal symfony/process wrapper to avoid conflicts caused by using the
+  symfony/process package bundled with `composer.phar`
+
+
 ## [1.0.4] - 2020-08-26
 
 ### Fixed
@@ -59,7 +71,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * create a REPL plugin for Composer
 
 
-[Unreleased]: https://github.com/ramsey/composer-repl/compare/1.0.4...HEAD
+[Unreleased]: https://github.com/ramsey/composer-repl/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/ramsey/composer-repl/compare/1.0.4...1.1.0
 [1.0.4]: https://github.com/ramsey/composer-repl/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/ramsey/composer-repl/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/ramsey/composer-repl/compare/1.0.1...1.0.2
