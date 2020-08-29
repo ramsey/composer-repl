@@ -8,6 +8,11 @@ use Mockery\MockInterface;
 use Ramsey\Dev\Repl\Process\Process;
 use Ramsey\Dev\Tools\TestCase;
 
+use function strcasecmp;
+use function substr;
+
+use const PHP_OS;
+
 class ProcessTest extends TestCase
 {
     public function testUseCorrectCommand(): void
@@ -21,6 +26,10 @@ class ProcessTest extends TestCase
         // @phpstan-ignore-next-line
         $commandLine = $process->useCorrectCommand(['foo', '--bar', '--baz']);
 
-        $this->assertSame("foo '--bar' '--baz'", $commandLine);
+        if (strcasecmp(substr(PHP_OS, 0, 3), 'WIN') === 0) {
+            $this->assertSame('foo "--bar" "--baz"', $commandLine);
+        } else {
+            $this->assertSame("foo '--bar' '--baz'", $commandLine);
+        }
     }
 }
