@@ -25,18 +25,10 @@ namespace Ramsey\Dev\Repl\Composer;
 use Composer\Command\BaseCommand;
 use Composer\Composer;
 use Composer\Config;
-use PHPUnit\Framework\TestCase;
-use Psy\Configuration;
-use Psy\Shell;
 use Ramsey\Dev\Repl\Process\ProcessFactory;
-use Ramsey\Dev\Repl\Psy\ElephpantCommand;
-use Ramsey\Dev\Repl\Psy\PhpunitRunCommand;
-use Ramsey\Dev\Repl\Psy\PhpunitTestCommand;
+use Ramsey\Dev\Repl\Repl;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use function getenv;
-use function sprintf;
 
 /**
  * Composer command to launch a PsySH REPL
@@ -74,31 +66,12 @@ class ReplCommand extends BaseCommand
         Config::disableProcessTimeout();
         $this->loadEnvironment();
 
-        $config = new Configuration([
-            'startupMessage' => $this->getStartupMessage(),
-            'colorMode' => Configuration::COLOR_MODE_FORCED,
-            'updateCheck' => 'never',
-            'useBracketedPaste' => true,
-        ]);
-
-        if ($this->isInteractive === false) {
-            $config->setInteractiveMode(Configuration::INTERACTIVE_MODE_DISABLED);
-        }
-
         /** @var Composer $composer */
         $composer = $this->getComposer(true);
 
-        $shell = new Shell($config);
-        $shell->setScopeVariables($this->getScopeVariables());
-        $shell->add(new PhpunitTestCommand());
-        $shell->add(new PhpunitRunCommand(
-            $this->repositoryRoot,
-            $this->processFactory,
-            $composer,
-        ));
-        $shell->add(new ElephpantCommand());
+        $repl = new Repl($this->repositoryRoot, $this->processFactory, $composer, $this->isInteractive);
 
-        return $shell->run();
+        return $repl->run();
     }
 
     private function loadEnvironment(): void
@@ -110,45 +83,5 @@ class ReplCommand extends BaseCommand
 
         /** @psalm-suppress UnresolvableInclude */
         require $vendorDir . '/autoload.php';
-    }
-
-    private function getStartupMessage(): string
-    {
-        $startupMessage = <<<'EOD'
-            ------------------------------------------------------------------------
-            <info>Welcome to the development console (REPL) for %s.</info>
-            <fg=cyan>To learn more about what you can do in PsySH, type `help`.</>
-            ------------------------------------------------------------------------
-            EOD;
-
-        /** @var Composer $composer */
-        $composer = $this->getComposer(true);
-
-        $packageName = (string) $composer->getPackage()->getPrettyName();
-
-        return sprintf($startupMessage, $packageName);
-    }
-
-    /**
-     * @return array{
-     *     env: array<string, string>,
-     *     phpunit: TestCase,
-     * }
-     */
-    private function getScopeVariables(): array
-    {
-        return [
-            'env' => getenv(),
-            'phpunit' => $this->getPhpUnitTestCase(),
-        ];
-    }
-
-    /**
-     * @psalm-suppress PropertyNotSetInConstructor
-     */
-    private function getPhpUnitTestCase(): TestCase
-    {
-        return new class extends TestCase {
-        };
     }
 }
