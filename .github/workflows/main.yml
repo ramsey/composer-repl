@@ -57,9 +57,10 @@ jobs:
 
             - name: Analyze & test
               run: |
-                  composer br:lint
-                  composer br:analyze:ci
-                  composer br:test:coverage:ci -- --coverage-text
+                  composer dev:lint
+                  composer dev:analyze:phpstan
+                  composer dev:analyze:psalm -- --shepherd
+                  composer dev:test:coverage:ci -- --coverage-text
 
             - name: Publish code coverage to Codecov
               uses: codecov/codecov-action@v1
