@@ -21,6 +21,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Security
 
 
+## [1.1.1] - 2020-09-02
+
+### Fixed
+
+* remove hoa/console dependency
+
+
 ## [1.1.0] - 2020-08-28
 
 ### Added
@@ -71,7 +78,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * create a REPL plugin for Composer
 
 
-[Unreleased]: https://github.com/ramsey/composer-repl/compare/1.1.0...HEAD
+[Unreleased]: https://github.com/ramsey/composer-repl/compare/1.1.1...HEAD
+[1.1.1]: https://github.com/ramsey/composer-repl/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/ramsey/composer-repl/compare/1.0.4...1.1.0
 [1.0.4]: https://github.com/ramsey/composer-repl/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/ramsey/composer-repl/compare/1.0.2...1.0.3
