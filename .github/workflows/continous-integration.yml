@@ -26,7 +26,7 @@ jobs:
           tools: "composer:v2"
       - uses: "ramsey/composer-install@v1"
       - name: "Check coding standards"
-        run: "bin/devtools lint"
+        run: "composer dev:lint"
 
   static-analysis:
     name: "Static Analysis"
@@ -41,9 +41,9 @@ jobs:
           tools: "composer:v2"
       - uses: "ramsey/composer-install@v1"
       - name: "Run PHPStan"
-        run: "bin/devtools analyze:phpstan"
+        run: "composer dev:analyze:phpstan"
       - name: "Run Psalm"
-        run: "bin/devtools analyze:psalm -- --shepherd"
+        run: "composer dev:analyze:psalm -- --shepherd"
 
   unit-tests:
     name: "Unit Tests"
@@ -86,6 +86,6 @@ jobs:
           dependency-versions: "${{ matrix.dependencies }}"
           composer-options: "${{ matrix.composer-options }}"
       - name: "Run unit tests"
-        run: "bin/devtools test:coverage:ci -- --coverage-text"
+        run: "composer dev:test:coverage:ci -- --coverage-text"
       - name: "Publish coverage report to Codecov"
         uses: "codecov/codecov-action@v1"
