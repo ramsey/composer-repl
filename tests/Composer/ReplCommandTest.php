@@ -15,6 +15,7 @@ use Ramsey\Dev\Tools\TestCase;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use function dirname;
 use function realpath;
 
 class ReplCommandTest extends TestCase
@@ -28,6 +29,13 @@ class ReplCommandTest extends TestCase
         $package = $this->mockery(RootPackageInterface::class, [
             'getPrettyName' => 'foo/bar',
             'getFullPrettyVersion' => 'dev-test',
+            'getExtra' => [
+                'ramsey/composer-repl' => [
+                    'includes' => [
+                        __DIR__ . '/../../repl.php',
+                    ],
+                ],
+            ],
         ]);
 
         $config = new Config();

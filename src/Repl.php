@@ -78,6 +78,7 @@ class Repl
             'colorMode' => Configuration::COLOR_MODE_FORCED,
             'updateCheck' => 'never',
             'useBracketedPaste' => true,
+            'defaultIncludes' => $this->getDefaultIncludes(),
         ]);
 
         if ($this->isInteractive === false) {
@@ -113,6 +114,17 @@ class Repl
             'env' => getenv(),
             'phpunit' => $this->getPhpUnitTestCase(),
         ];
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getDefaultIncludes(): array
+    {
+        /** @var string[] $includes */
+        $includes = $this->composer->getPackage()->getExtra()['ramsey/composer-repl']['includes'] ?? [];
+
+        return $includes;
     }
 
     /**

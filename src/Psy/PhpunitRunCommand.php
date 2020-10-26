@@ -30,6 +30,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use function array_merge;
+use function count;
 use function implode;
 
 use const DIRECTORY_SEPARATOR;

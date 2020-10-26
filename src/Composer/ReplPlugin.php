@@ -31,6 +31,7 @@ use Composer\Plugin\Capable;
 use Composer\Plugin\PluginInterface;
 use Ramsey\Dev\Repl\Process\ProcessFactory;
 
+use function dirname;
 use function realpath;
 
 /**

@@ -27,6 +27,11 @@ use ReflectionException;
 use ReflectionMethod;
 use Symfony\Component\Process\Process as SymfonyProcess;
 
+use function array_map;
+use function array_shift;
+use function escapeshellarg;
+use function implode;
+
 /**
  * @internal
  */

@@ -114,6 +114,61 @@ OK (221 tests, 484 assertions)
 
 This implementation of PsySH has Super ElePHPant Powers.
 
+## Environment Bootstrapping
+
+The power of this REPL comes in its ability to act as a tool in your local
+development environment. So, you might want to load parts of your environment
+(i.e., configuration, objects, etc.), so you can access these from within the
+REPL.
+
+You can do this by specifying any number of PHP scripts to include in
+`composer.json`, like this:
+
+``` json
+{
+    "extra": {
+        "ramsey/composer-repl": {
+            "includes": [
+                "repl.php",
+                "tests/bootstrap.php"
+            ]
+        }
+    }
+}
+```
+
+Any variables set or configuration loaded from these scripts is available to use
+from within the REPL.
+
+For example, if `repl.php` contains:
+
+``` php
+<?php
+$foo = 'bar';
+```
+
+And we use `composer.json` to load it with the REPL:
+
+``` json
+{
+    "extra": {
+        "ramsey/composer-repl": {
+            "includes": [ "repl.php" ]
+        }
+    }
+}
+```
+
+Then, when we're in the REPL, we'll see `$foo` defined:
+
+```
+>>> ls
+Variables: $env, $foo, $phpunit
+
+>>> $foo
+=> "bar"
+```
+
 ## Contributing
 
 Contributions are welcome! Before contributing to this project, familiarize
