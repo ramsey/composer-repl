@@ -25,6 +25,7 @@ namespace Ramsey\Dev\Repl\Process;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
+use ReflectionNamedType;
 use Symfony\Component\Process\Process as SymfonyProcess;
 
 use function array_map;
@@ -63,9 +64,12 @@ class Process extends SymfonyProcess
 
         /** @var ReflectionMethod $reflectedConstructor */
         $reflectedConstructor = $reflectedProcess->getConstructor();
+        $reflectedConstructorType = $reflectedConstructor->getParameters()[0]->getType();
 
-        if ($reflectedConstructor->getParameters()[0]->isArray()) {
-            return $command;
+        if ($reflectedConstructorType instanceof ReflectionNamedType) {
+            if ($reflectedConstructorType->getName() === 'array') {
+                return $command;
+            }
         }
 
         $commandLine = array_shift($command) . ' ';

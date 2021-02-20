@@ -97,7 +97,7 @@ class Repl
             ------------------------------------------------------------------------
             EOD;
 
-        $packageName = (string) $this->composer->getPackage()->getPrettyName();
+        $packageName = $this->composer->getPackage()->getPrettyName();
 
         return sprintf($startupMessage, $packageName);
     }
