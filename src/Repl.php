@@ -92,14 +92,19 @@ class Repl
     {
         $startupMessage = <<<'EOD'
             ------------------------------------------------------------------------
-            <info>Welcome to the development console (REPL) for %s.</info>
+            <info>Welcome to the development console (REPL)%s.</info>
             <fg=cyan>To learn more about what you can do in PsySH, type `help`.</>
             ------------------------------------------------------------------------
             EOD;
 
         $packageName = $this->composer->getPackage()->getPrettyName();
+        $forPackage = '';
 
-        return sprintf($startupMessage, $packageName);
+        if ($packageName !== '__root__') {
+            $forPackage = " for {$packageName}";
+        }
+
+        return sprintf($startupMessage, $forPackage);
     }
 
     /**
