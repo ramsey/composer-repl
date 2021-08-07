@@ -57,10 +57,7 @@
     "autoload-dev": {
         "psr-4": {
             "Ramsey\\Test\\Dev\\Repl\\": "tests/"
-        },
-        "files": [
-            "vendor/hamcrest/hamcrest-php/hamcrest/Hamcrest.php"
-        ]
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
