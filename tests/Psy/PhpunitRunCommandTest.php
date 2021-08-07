@@ -111,7 +111,6 @@ class PhpunitRunCommandTest extends TestCase
         $output->expects()->writeln('')->twice();
         $output->expects()->write('this is some output');
 
-        /** @var Process & MockInterface $process */
         $process = $this->mockery(Process::class);
         $process->expects()->start();
         $process->shouldReceive('wait')->andReturnUsing(

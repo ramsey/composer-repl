@@ -108,10 +108,7 @@ class Repl
     }
 
     /**
-     * @return array{
-     *     env: array<string, string>,
-     *     phpunit: TestCase,
-     * }
+     * @return array{env: array<string, string>, phpunit: TestCase}
      */
     private function getScopeVariables(): array
     {
@@ -126,14 +123,13 @@ class Repl
      */
     private function getDefaultIncludes(): array
     {
-        /** @var string[] $includes */
-        $includes = $this->composer->getPackage()->getExtra()['ramsey/composer-repl']['includes'] ?? [];
-
-        return $includes;
+        /** @var string[] */
+        return $this->composer->getPackage()->getExtra()['ramsey/composer-repl']['includes'] ?? [];
     }
 
     /**
      * @psalm-suppress PropertyNotSetInConstructor
+     * @psalm-suppress InternalMethod
      */
     private function getPhpUnitTestCase(): TestCase
     {

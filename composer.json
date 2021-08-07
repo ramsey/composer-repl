@@ -33,6 +33,9 @@
         "branch-alias": {
             "dev-main": "1.x-dev"
         },
+        "captainhook": {
+            "force-install": true
+        },
         "class": "Ramsey\\Dev\\Repl\\Composer\\ReplPlugin",
         "ramsey/composer-repl": {
             "includes": [

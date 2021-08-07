@@ -152,7 +152,7 @@ class PhpunitRunCommand extends ContextAwareCommand
         $output->writeln('');
 
         $exitCode = $process->wait(
-            function (string $type, string $buffer) use ($output): void {
+            function (string $_type, string $buffer) use ($output): void {
                 $output->write($buffer);
             },
         );

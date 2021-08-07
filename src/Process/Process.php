@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace Ramsey\Dev\Repl\Process;
 
+use IteratorAggregate;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
@@ -35,8 +36,12 @@ use function implode;
 
 /**
  * @internal
+ *
+ * @template TKey
+ * @template TValue
+ * @implements IteratorAggregate<TKey, TValue>
  */
-class Process extends SymfonyProcess
+class Process extends SymfonyProcess implements IteratorAggregate
 {
     /**
      * @param string[] $command

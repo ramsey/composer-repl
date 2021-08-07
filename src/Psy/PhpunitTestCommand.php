@@ -25,6 +25,7 @@ namespace Ramsey\Dev\Repl\Psy;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Psy\Input\CodeArgument;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Throwable;
@@ -46,7 +47,7 @@ class PhpunitTestCommand extends ContextAwareCommand
             ->setDefinition([
                 new CodeArgument(
                     'assertion',
-                    CodeArgument::REQUIRED,
+                    InputArgument::REQUIRED,
                     'The PHPUnit assertion to evaluate.',
                 ),
             ])

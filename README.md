@@ -8,12 +8,10 @@
     <a href="https://github.com/ramsey/composer-repl"><img src="http://img.shields.io/badge/source-ramsey/composer--repl-blue.svg?style=flat-square" alt="Source Code"></a>
     <a href="https://packagist.org/packages/ramsey/composer-repl"><img src="https://img.shields.io/packagist/v/ramsey/composer-repl.svg?style=flat-square&label=release" alt="Download Package"></a>
     <a href="https://php.net"><img src="https://img.shields.io/packagist/php-v/ramsey/composer-repl.svg?style=flat-square&colorB=%238892BF" alt="PHP Programming Language"></a>
+    <a href="https://github.com/ramsey/composer-repl/blob/main/LICENSE"><img src="https://img.shields.io/packagist/l/ramsey/composer-repl.svg?style=flat-square&colorB=darkcyan" alt="Read License"></a>
     <a href="https://github.com/ramsey/composer-repl/actions?query=workflow%3ACI"><img src="https://img.shields.io/github/workflow/status/ramsey/composer-repl/CI?label=CI&logo=github&style=flat-square" alt="Build Status"></a>
     <a href="https://codecov.io/gh/ramsey/composer-repl"><img src="https://img.shields.io/codecov/c/gh/ramsey/composer-repl?label=codecov&logo=codecov&style=flat-square" alt="Codecov Code Coverage"></a>
     <a href="https://shepherd.dev/github/ramsey/composer-repl"><img src="https://img.shields.io/endpoint?style=flat-square&url=https%3A%2F%2Fshepherd.dev%2Fgithub%2Framsey%2Fcomposer-repl%2Fcoverage" alt="Psalm Type Coverage"></a>
-    <a href="https://github.com/ramsey/composer-repl/blob/master/LICENSE"><img src="https://img.shields.io/packagist/l/ramsey/composer-repl.svg?style=flat-square&colorB=darkcyan" alt="Read License"></a>
-    <a href="https://packagist.org/packages/ramsey/composer-repl/stats"><img src="https://img.shields.io/packagist/dt/ramsey/composer-repl.svg?style=flat-square&colorB=darkmagenta" alt="Package downloads on Packagist"></a>
-    <a href="https://phpc.chat/channel/ramsey"><img src="https://img.shields.io/badge/phpc.chat-%23ramsey-darkslateblue?style=flat-square" alt="Chat with the maintainers"></a>
 </p>
 
 ## About
@@ -59,9 +57,9 @@ if you prefer.
 You'll see something similar to this:
 
 ```
-Psy Shell v0.10.4 (PHP 7.4.9 — cli) by Justin Hileman
+Psy Shell v0.10.8 (PHP 8.0.9 — cli) by Justin Hileman
 ------------------------------------------------------------------------
-Welcome to the development console (REPL) for ramsey/conventional-commits.
+Welcome to the development console (REPL).
 To learn more about what you can do in PsySH, type `help`.
 ------------------------------------------------------------------------
 >>>
@@ -173,6 +171,13 @@ Variables: $env, $foo, $phpunit
 
 Contributions are welcome! To contribute, please familiarize yourself with
 [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Coordinated Disclosure
+
+Keeping user information safe and secure is a top priority, and we welcome the
+contribution of external security researchers. If you believe you've found a
+security issue in software that is maintained in this repository, please read
+[SECURITY.md](SECURITY.md) for instructions on submitting a vulnerability report.
 
 ## Copyright and License
 
