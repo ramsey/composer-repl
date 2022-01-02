@@ -2,7 +2,15 @@
 
 name: "build"
 
-on: ["pull_request", "push"]
+on:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "*"
+  pull_request:
+    branches:
+      - "main"
 
 env:
   COMPOSER_ROOT_VERSION: "1.99.99"
@@ -22,12 +30,14 @@ jobs:
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v2"
 
       - name: "Check syntax (php-parallel-lint)"
+        shell: "bash"
         run: "composer dev:lint:syntax"
 
       - name: "Check coding standards (PHP_CodeSniffer)"
+        shell: "bash"
         run: "composer dev:lint:style"
 
   static-analysis:
@@ -44,12 +54,14 @@ jobs:
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v2"
 
       - name: "Statically analyze code (PHPStan)"
+        shell: "bash"
         run: "composer dev:analyze:phpstan"
 
       - name: "Statically analyze code (Psalm)"
+        shell: "bash"
         run: "composer dev:analyze:psalm -- --shepherd"
 
   security-analysis:
@@ -66,9 +78,10 @@ jobs:
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v2"
 
       - name: "Analyze security of code (Psalm)"
+        shell: "bash"
         run: "./vendor/bin/psalm --taint-analysis --report=build/logs/psalm.sarif"
 
       - name: "Upload security analysis results to GitHub"
@@ -91,13 +104,14 @@ jobs:
           ini-values: "memory_limit=-1"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v2"
 
       - name: "Run unit tests (PHPUnit)"
+        shell: "bash"
         run: "composer dev:test:coverage:ci"
 
       - name: "Publish coverage report to Codecov"
-        uses: "codecov/codecov-action@v1"
+        uses: "codecov/codecov-action@v2.1.0"
 
   unit-tests:
     name: "Unit tests"
@@ -110,6 +124,7 @@ jobs:
         php-version:
           - "7.4"
           - "8.0"
+          - "8.1"
         operating-system:
           - "macos-latest"
           - "ubuntu-latest"
@@ -117,18 +132,11 @@ jobs:
         dependencies:
           - "lowest"
           - "highest"
-        experimental:
-          - false
-        include:
-          - php-version: "8.1"
-            operating-system: "ubuntu-latest"
-            dependencies: "highest"
-            experimental: true
-            composer-options: "--ignore-platform-req=php"
 
     steps:
       - name: "Configure Git (for Windows)"
         if: ${{ matrix.operating-system == 'windows-latest' }}
+        shell: "bash"
         run: |
           git config --system core.autocrlf false
           git config --system core.eol lf
@@ -143,10 +151,11 @@ jobs:
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v2"
         with:
           dependency-versions: "${{ matrix.dependencies }}"
           composer-options: "${{ matrix.composer-options }}"
 
       - name: "Run unit tests (PHPUnit)"
+        shell: "bash"
         run: "composer dev:test:unit"
