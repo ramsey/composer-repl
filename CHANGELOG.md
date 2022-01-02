@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.3.0 - 2022-01-02
+
+### Added
+
+- Allow Symfony packages in the version 6.x series
+
+### Changed
+
+- Increase lower-boundary constraints for symfony/console and symfony/process to 4.4.30 and 5.3.7
+
+- Update PsySH to version 0.11.x
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 1.2.3 - 2021-08-07
 
 Maintenance release
