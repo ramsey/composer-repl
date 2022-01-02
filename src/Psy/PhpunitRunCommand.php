@@ -139,7 +139,8 @@ class PhpunitRunCommand extends ContextAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $binDir = (string) $this->composer->getConfig()->get('bin-dir');
+        /** @var string $binDir */
+        $binDir = $this->composer->getConfig()->get('bin-dir');
         $phpunit = $binDir . DIRECTORY_SEPARATOR . 'phpunit';
 
         $process = $this->processFactory->factory(

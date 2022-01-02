@@ -79,7 +79,8 @@ class ReplCommand extends BaseCommand
         /** @var Composer $composer */
         $composer = $this->getComposer(true);
 
-        $vendorDir = (string) $composer->getConfig()->get('vendor-dir');
+        /** @var string $vendorDir */
+        $vendorDir = $composer->getConfig()->get('vendor-dir');
 
         /** @psalm-suppress UnresolvableInclude */
         require $vendorDir . '/autoload.php';

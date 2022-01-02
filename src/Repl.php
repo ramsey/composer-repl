@@ -36,6 +36,9 @@ use function sprintf;
 
 /**
  * Customizes and controls an instance of PsySH Shell
+ *
+ * @psalm-type ComposerReplIncludesType = array{includes?: array<string>}
+ * @psalm-type ComposerExtrasType = array{"ramsey/composer-repl"?: ComposerReplIncludesType}
  */
 class Repl
 {
@@ -123,8 +126,10 @@ class Repl
      */
     private function getDefaultIncludes(): array
     {
-        /** @var string[] */
-        return $this->composer->getPackage()->getExtra()['ramsey/composer-repl']['includes'] ?? [];
+        /** @var ComposerExtrasType $extra */
+        $extra = $this->composer->getPackage()->getExtra();
+
+        return $extra['ramsey/composer-repl']['includes'] ?? [];
     }
 
     /**

@@ -46,7 +46,7 @@ class ReplPlugin implements Capable, CommandProvider, PluginInterface
 
     public function __construct()
     {
-        $composerFile = (string) Factory::getComposerFile();
+        $composerFile = Factory::getComposerFile();
 
         $this->repoRoot = (string) realpath(dirname($composerFile));
         $this->processFactory = new ProcessFactory();
