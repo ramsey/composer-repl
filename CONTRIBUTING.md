@@ -1,5 +1,8 @@
 # Contributing
 
+ℹ️ _**NOTICE:** First, check out [ramsey/composer-repl-lib](https://github.com/ramsey/composer-repl-lib)
+to decide whether your contribution or bug report is best suited for that library._
+
 Contributions are welcome. This project accepts pull requests on [GitHub][].
 
 This project adheres to a [code of conduct](CODE_OF_CONDUCT.md). By
@@ -72,12 +75,6 @@ When you do begin working on your feature, here are some guidelines to consider:
   We will use this description to update the CHANGELOG. If there is no
   description, or it does not adequately describe your feature, we may ask you
   to update the description.
-* ramsey/composer-repl follows a superset of **[PSR-12 coding standard][psr-12]**.
-  Please ensure your code does, too. _Hint: run `composer dev:lint` to check._
-* Please **write tests** for any new features you add.
-* Please **ensure that tests pass** before submitting your pull request.
-  ramsey/composer-repl automatically runs tests for pull requests. However,
-  running the tests locally will help save time. _Hint: run `composer test`._
 * **Use topic/feature branches.** Please do not ask to pull from your main branch.
   * For more information, see "[Understanding the GitHub flow][gh-flow]."
 * **Submit one feature per pull request.** If you have multiple features you
@@ -106,68 +103,6 @@ Now, you are ready to develop!
 
 This project uses [CaptainHook](https://github.com/CaptainHookPhp/captainhook)
 to validate all staged changes prior to commit.
-
-### Commands
-
-To see all the commands available for contributing to this project:
-
-``` bash
-composer list dev
-```
-
-### Coding Standards
-
-This project follows a superset of [PSR-12](https://www.php-fig.org/psr/psr-12/)
-coding standards, enforced by [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer).
-
-CaptainHook will run coding standards checks before committing.
-
-You may lint the codebase manually using the following commands:
-
-``` bash
-# Lint
-composer dev:lint
-
-# Attempt to auto-fix coding standards issues
-composer dev:lint:fix
-```
-
-### Static Analysis
-
-This project uses a combination of [PHPStan](https://github.com/phpstan/phpstan)
-and [Psalm](https://github.com/vimeo/psalm) to provide static analysis of PHP
-code.
-
-CaptainHook will run static analysis checks before committing.
-
-You may run static analysis manually across the whole codebase with the
-following command:
-
-``` bash
-# Static analysis
-composer dev:analyze
-```
-
-### Project Structure
-
-This project uses [pds/skeleton](https://github.com/php-pds/skeleton) as its
-base folder structure and layout.
-
-### Running Tests
-
-The following must pass before we will accept a pull request. If this does not
-pass, it will result in a complete build failure. Before you can run this, be
-sure to `composer install`.
-
-To run all the tests and coding standards checks, execute the following from the
-command line, while in the project root directory:
-
-```
-composer test
-```
-
-CaptainHook will automatically run all tests before pushing to the remote
-repository.
 
 [github]: https://github.com/ramsey/composer-repl
 [issues]: https://github.com/ramsey/composer-repl/issues

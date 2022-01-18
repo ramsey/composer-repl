@@ -14,12 +14,8 @@
         ]
     },
     "pre-push": {
-        "enabled": true,
-        "actions": [
-            {
-                "action": "composer test"
-            }
-        ]
+        "enabled": false,
+        "actions": []
     },
     "pre-commit": {
         "enabled": true,
@@ -39,24 +35,6 @@
                     {
                         "exec": "\\CaptainHook\\App\\Hook\\Condition\\FileStaged\\Any",
                         "args": [["composer.json"]]
-                    }
-                ]
-            },
-            {
-                "action": "composer dev:lint:syntax -- {$STAGED_FILES|of-type:php}",
-                "conditions": [
-                    {
-                        "exec": "\\CaptainHook\\App\\Hook\\Condition\\FileStaged\\OfType",
-                        "args": ["php"]
-                    }
-                ]
-            },
-            {
-                "action": "composer dev:lint:style -- {$STAGED_FILES|of-type:php}",
-                "conditions": [
-                    {
-                        "exec": "\\CaptainHook\\App\\Hook\\Condition\\FileStaged\\OfType",
-                        "args": ["php"]
                     }
                 ]
             }

@@ -9,9 +9,9 @@
     <a href="https://packagist.org/packages/ramsey/composer-repl"><img src="https://img.shields.io/packagist/v/ramsey/composer-repl.svg?style=flat-square&label=release" alt="Download Package"></a>
     <a href="https://php.net"><img src="https://img.shields.io/packagist/php-v/ramsey/composer-repl.svg?style=flat-square&colorB=%238892BF" alt="PHP Programming Language"></a>
     <a href="https://github.com/ramsey/composer-repl/blob/main/LICENSE"><img src="https://img.shields.io/packagist/l/ramsey/composer-repl.svg?style=flat-square&colorB=darkcyan" alt="Read License"></a>
-    <a href="https://github.com/ramsey/composer-repl/actions/workflows/continuous-integration.yml"><img src="https://img.shields.io/github/workflow/status/ramsey/composer-repl/build/main?style=flat-square&logo=github" alt="Build Status"></a>
-    <a href="https://codecov.io/gh/ramsey/composer-repl"><img src="https://img.shields.io/codecov/c/gh/ramsey/composer-repl?label=codecov&logo=codecov&style=flat-square" alt="Codecov Code Coverage"></a>
-    <a href="https://shepherd.dev/github/ramsey/composer-repl"><img src="https://img.shields.io/endpoint?style=flat-square&url=https%3A%2F%2Fshepherd.dev%2Fgithub%2Framsey%2Fcomposer-repl%2Fcoverage" alt="Psalm Type Coverage"></a>
+    <a href="https://github.com/ramsey/composer-repl-lib/actions/workflows/continuous-integration.yml"><img src="https://img.shields.io/github/workflow/status/ramsey/composer-repl-lib/build/main?style=flat-square&logo=github" alt="Build Status"></a>
+    <a href="https://codecov.io/gh/ramsey/composer-repl-lib"><img src="https://img.shields.io/codecov/c/gh/ramsey/composer-repl-lib?label=codecov&logo=codecov&style=flat-square" alt="Codecov Code Coverage"></a>
+    <a href="https://shepherd.dev/github/ramsey/composer-repl-lib"><img src="https://img.shields.io/endpoint?style=flat-square&url=https%3A%2F%2Fshepherd.dev%2Fgithub%2Framsey%2Fcomposer-repl-lib%2Fcoverage" alt="Psalm Type Coverage"></a>
 </p>
 
 ## About
@@ -36,6 +36,9 @@ for WordPress, [CakePHP console](https://book.cakephp.org/3/en/console-and-shell
 and [Yii shell](https://github.com/yiisoft/yii2-shell) are a few of the projects
 using PsySH.
 
+> 💡 You may use this REPL without the Composer plugin functionality by requiring
+> [ramsey/composer-repl-lib](https://github.com/ramsey/composer-repl-lib) instead.
+
 This project adheres to a [code of conduct](CODE_OF_CONDUCT.md).
 By participating in this project and its community, you are expected to
 uphold this code.
@@ -57,7 +60,7 @@ if you prefer.
 You'll see something similar to this:
 
 ```
-Psy Shell v0.10.8 (PHP 8.0.9 — cli) by Justin Hileman
+Psy Shell v0.11.1 (PHP 8.1.1 — cli) by Justin Hileman
 ------------------------------------------------------------------------
 Welcome to the development console (REPL).
 To learn more about what you can do in PsySH, type `help`.
@@ -95,9 +98,9 @@ Test passed!
 
 >>> phpunit
 
-PHPUnit 9.3.7 by Sebastian Bergmann and contributors.
+PHPUnit 9.5.11 by Sebastian Bergmann and contributors.
 
-Runtime:       PHP 7.4.9
+Runtime:       PHP 8.1.1
 Configuration: /path/to/ramsey/conventional-commits/phpunit.xml.dist
 
 ...............................................................  63 / 221 ( 28%)
@@ -110,7 +113,7 @@ Time: 00:00.064, Memory: 12.00 MB
 OK (221 tests, 484 assertions)
 ```
 
-This implementation of PsySH has Super ElePHPant Powers.
+✨🐘 This implementation of PsySH has Super ElePHPant Powers. 🐘✨
 
 ## Environment Bootstrapping
 
@@ -181,6 +184,6 @@ security issue in software that is maintained in this repository, please read
 
 ## Copyright and License
 
-The ramsey/composer-repl library is copyright © [Ben Ramsey](https://benramsey.com)
+The ramsey/composer-repl plugin is copyright © [Ben Ramsey](https://benramsey.com)
 and licensed for use under the terms of the
 MIT License (MIT). Please see [LICENSE](LICENSE) for more information.

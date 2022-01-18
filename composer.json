@@ -18,38 +18,21 @@
     "require": {
         "php": "^7.4 || ^8",
         "composer-plugin-api": "^1.1 || ^2",
-        "phpunit/phpunit": "^6 || ^7 || ^8 || ^9",
-        "psy/psysh": "^0.11.0",
-        "symfony/console": "^4.4.30 || ^5.3.7 || ^6",
-        "symfony/process": "^4.4.30 || ^5.3.7 || ^6"
+        "ramsey/composer-repl-lib": "^1.0"
     },
     "require-dev": {
-        "composer/composer": "^1.10.23 || ^2.1.9",
         "ramsey/devtools": "^1.3"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "autoload": {
-        "psr-4": {
-            "Ramsey\\Dev\\Repl\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Ramsey\\Test\\Dev\\Repl\\": "tests/"
-        }
-    },
-    "bin": [
-        "bin/repl"
-    ],
     "config": {
         "allow-plugins": {
+            "composer/package-versions-deprecated": true,
             "phpstan/extension-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "ergebnis/composer-normalize": true,
             "captainhook/plugin-composer": true,
-            "ramsey/devtools": true,
-            "composer/package-versions-deprecated": true
+            "ramsey/devtools": true
         },
         "sort-packages": true
     },
@@ -61,11 +44,6 @@
             "force-install": true
         },
         "class": "Ramsey\\Dev\\Repl\\Composer\\ReplPlugin",
-        "ramsey/composer-repl": {
-            "includes": [
-                "repl.php"
-            ]
-        },
         "ramsey/conventional-commits": {
             "configFile": "conventional-commits.json"
         },

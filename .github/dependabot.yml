@@ -5,7 +5,3 @@ updates:
     schedule:
       interval: "monthly"
     versioning-strategy: "increase-if-necessary"
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "monthly"
