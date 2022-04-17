@@ -17,22 +17,21 @@
     ],
     "require": {
         "php": "^7.4 || ^8",
-        "composer-plugin-api": "^1.1 || ^2",
-        "ramsey/composer-repl-lib": "^1.0"
+        "composer-plugin-api": "^2",
+        "ramsey/composer-repl-lib": "^1.1"
     },
     "require-dev": {
-        "ramsey/devtools": "^1.3"
+        "captainhook/captainhook": "^5.10",
+        "captainhook/plugin-composer": "^5.3",
+        "ergebnis/composer-normalize": "^2.25",
+        "roave/security-advisories": "dev-latest"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "allow-plugins": {
-            "composer/package-versions-deprecated": true,
-            "phpstan/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "ergebnis/composer-normalize": true,
             "captainhook/plugin-composer": true,
-            "ramsey/devtools": true
+            "ergebnis/composer-normalize": true
         },
         "sort-packages": true
     },
