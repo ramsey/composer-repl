@@ -16,18 +16,17 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ^8",
-        "composer-plugin-api": "^2",
-        "ramsey/composer-repl-lib": "^1.1"
+        "php": "^8.1",
+        "composer-plugin-api": "^2.0",
+        "ramsey/composer-repl-lib": "^1.2"
     },
     "require-dev": {
-        "captainhook/captainhook": "^5.10",
+        "captainhook/captainhook": "^5.15",
         "captainhook/plugin-composer": "^5.3",
-        "ergebnis/composer-normalize": "^2.25",
+        "ergebnis/composer-normalize": "^2.30",
+        "ramsey/conventional-commits": "^1.5",
         "roave/security-advisories": "dev-latest"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "config": {
         "allow-plugins": {
             "captainhook/plugin-composer": true,
@@ -36,9 +35,6 @@
         "sort-packages": true
     },
     "extra": {
-        "branch-alias": {
-            "dev-main": "1.x-dev"
-        },
         "captainhook": {
             "force-install": true
         },
