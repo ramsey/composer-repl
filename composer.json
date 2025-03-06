@@ -21,10 +21,10 @@
         "ramsey/composer-repl-lib": "^1.2"
     },
     "require-dev": {
-        "captainhook/captainhook": "^5.15",
+        "captainhook/captainhook": "^5.25",
         "captainhook/plugin-composer": "^5.3",
-        "ergebnis/composer-normalize": "^2.30",
-        "ramsey/conventional-commits": "^1.5",
+        "ergebnis/composer-normalize": "^2.45",
+        "ramsey/conventional-commits": "^1.6",
         "roave/security-advisories": "dev-latest"
     },
     "config": {
@@ -41,9 +41,6 @@
         "class": "Ramsey\\Dev\\Repl\\Composer\\ReplPlugin",
         "ramsey/conventional-commits": {
             "configFile": "conventional-commits.json"
-        },
-        "ramsey/devtools": {
-            "command-prefix": "dev"
         }
     }
 }
